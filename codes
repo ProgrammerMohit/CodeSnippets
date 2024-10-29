@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passenger Registration & Service Booking UI</title>
+    <style>
+        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background-color: #f4f4f9; }
+        .container { max-width: 500px; width: 100%; background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); }
+        .hidden { display: none; }
+        .success { color: green; }
+        h2 { text-align: center; color: #333; }
+        button { width: 100%; padding: 10px; margin-top: 10px; background-color: #4CAF50; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #45a049; }
+        input, select, textarea { width: 100%; padding: 10px; margin-top: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        .service-list li { margin: 8px 0; cursor: pointer; color: #007bff; }
+        .service-list li:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Registration Section -->
+    <div id="register-section">
+        <h2>Register</h2>
+        <label for="username">User Name:</label>
+        <input type="text" id="username" maxlength="50">
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email">
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" maxlength="30">
+        
+        <label for="confirm-password">Confirm Password:</label>
+        <input type="password" id="confirm-password" maxlength="30">
+        
+        <label for="address">Address:</label>
+        <textarea id="address" maxlength="100"></textarea>
+        
+        <label for="contact">Contact Number:</label>
+        <input type="text" id="contact" maxlength="10">
+        
+        <button onclick="register()">Register</button>
+    </div>
+
+    <!-- Login Section (Hidden Initially) -->
+    <div id="login-section" class="hidden">
+        <h2>Login</h2>
+        <label for="login-username">User Name:</label>
+        <input type="text" id="login-username">
+        
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password">
+        
+        <button onclick="login()">Login</button>
+    </div>
+
+    <!-- Home Section with Service List -->
+    <div id="home-section" class="hidden">
+        <h2>Book a Service</h2>
+        <ul class="service-list">
+            <li onclick="openServiceForm('House Cleaning')">House Cleaning</li>
+            <li onclick="openServiceForm('Vehicle Repair')">Vehicle Repair</li>
+            <li onclick="openServiceForm('Product Pickup & Drop')">Product Pickup & Drop</li>
+        </ul>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <!-- Service Booking Form (Hidden Initially) -->
+    <div id="service-booking-section" class="hidden">
+        <h2 id="service-title">Service Booking</h2>
+        
+        <label for="date-slot">Date/Slot:</label>
+        <input type="date" id="date-slot">
+        
+        <label for="booking-address">Address:</label>
+        <textarea id="booking-address" maxlength="100"></textarea>
+        
+        <label for="vendor">Vendor Selection:</label>
+        <select id="vendor">
+            <option>Vendor 1</option>
+            <option>Vendor 2</option>
+            <option>Vendor 3</option>
+        </select>
+        
+        <label for="amount">Amount:</label>
+        <input type="text" id="amount" value="$100" readonly>
+        
+        <button onclick="confirmBooking()">Confirm Booking</button>
+    </div>
+
+    <!-- Acknowledgment Screen -->
+    <div id="acknowledgment-section" class="hidden">
+        <h2>Booking Confirmation</h2>
+        <p class="success">Service Booked Successfully!</p>
+        <p><strong>Service ID:</strong> <span id="service-id"></span></p>
+        <p><strong>Vendor Name:</strong> <span id="vendor-name"></span></p>
+        <p><strong>Date/Slot:</strong> <span id="booking-date-slot"></span></p>
+        <button onclick="backToHome()">Back to Home</button>
+    </div>
+</div>
+
+<script>
+    function register() {
+        const username = document.getElementById('username').value;
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm-password').value;
+        const address = document.getElementById('address').value;
+        const contact = document.getElementById('contact').value;
+
+        if (password === confirmPassword) {
+            alert("Registration successful!");
+            document.getElementById('register-section').classList.add('hidden');
+            document.getElementById('login-section').classList.remove('hidden');
+        } else {
+            alert("Passwords do not match!");
+        }
+    }
+
+    function login() {
+        const username = document.getElementById('login-username').value;
+        const password = document.getElementById('login-password').value;
+
+        if (username && password) {
+            alert("Login successful!");
+            document.getElementById('login-section').classList.add('hidden');
+            document.getElementById('home-section').classList.remove('hidden');
+        } else {
+            alert("Please enter valid credentials.");
+        }
+    }
+
+    function logout() {
+        document.getElementById('home-section').classList.add('hidden');
+        document.getElementById('login-section').classList.remove('hidden');
+    }
+
+    function openServiceForm(serviceName) {
+        document.getElementById('service-title').innerText = serviceName + " Booking";
+        document.getElementById('home-section').classList.add('hidden');
+        document.getElementById('service-booking-section').classList.remove('hidden');
+    }
+
+    function confirmBooking() {
+        const dateSlot = document.getElementById('date-slot').value;
+        const bookingAddress = document.getElementById('booking-address').value;
+        const vendor = document.getElementById('vendor').value;
+
+        if (dateSlot && bookingAddress) {
+            const serviceId = 'SERV' + Math.floor(Math.random() * 10000);
+
+            // Display confirmation details
+            document.getElementById('service-id').innerText = serviceId;
+            document.getElementById('vendor-name').innerText = vendor;
+            document.getElementById('booking-date-slot').innerText = dateSlot;
+
+            // Switch to acknowledgment screen
+            document.getElementById('service-booking-section').classList.add('hidden');
+            document.getElementById('acknowledgment-section').classList.remove('hidden');
+        } else {
+            alert("Please complete all fields.");
+        }
+    }
+
+    function backToHome() {
+        document.getElementById('acknowledgment-section').classList.add('hidden');
+        document.getElementById('home-section').classList.remove('hidden');
+    }
+</script>
+
+</body>
+</html>
+S
