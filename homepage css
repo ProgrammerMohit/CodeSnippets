@@ -1,411 +1,205 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;700&display=swap");
-/* Base */
-:root {
-  --clr-primary: #29a396;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  font-family: "Nunito", sans-serif;
-}
-
-html {
-  scroll-behavior: smooth;
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  width: 100%;
-  min-height: 100vh;
-  background: radial-gradient(#111, #071a1a);
-  color: #fff;
-  overflow-x: hidden;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
 }
 
 .container {
-  width: 80%;
-  margin: 0 auto;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.flex {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.header,
-.section {
-  width: 100%;
-  padding: 40px 0;
-  overflow: hidden;
-}
-
-.header::after,
-.header::before,
-.section::after,
-.section::before {
-  content: "";
-  background: url(https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/blur-1.png);
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: contain;
-  bottom: 0;
-}
-
-.header::after {
-  left: -200px;
-}
-
-.header::before {
-  right: -200px;
-}
-
-.mb {
-  margin-bottom: 30px;
-}
-
-.mt {
-  margin-top: 20px;
-}
-
-.section {
-  background: #1d1f1e;
-  position: relative;
-  padding: 80px 0;
-}
-
-.section::after {
-  left: -200px;
-}
-
-.section::before {
-  width: 600px;
-  right: -200px;
-}
-
-.section:nth-child(even) {
-  background: #141615;
-}
-
-.section:nth-child(even)::after,
-.section:nth-child(even)::before {
-  display: none;
-}
-
-.primary {
-  font-size: 35px;
-  font-weight: 700;
-}
-
-.secondary {
-  font-size: 25px;
-  font-weight: 700;
-}
-
-.tertiary {
-  font-size: 15px;
-}
-/* End Base */
-
-/* Menu */
-.menu {
-  width: 100%;
-  background: linear-gradient(to right, #0e0e0e 70%, #142d2a);
-  padding: 12px 0;
-}
-
-.menu .container {
-  justify-content: space-between;
-}
-
-.mobile-btn {
-  display: none;
+/* Header */
+.header {
+    background: #0078D4;
+    color: #fff;
+    padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .logo {
-  cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
-.logo img {
-  width: 80px;
-  height: auto;
+.nav ul {
+    list-style: none;
+    display: flex;
 }
 
-.nav {
-  list-style: none;
+.nav li {
+    margin: 0 1rem;
 }
 
-.nav-item {
-  display: inline-block;
-  margin-right: 30px;
-  font-size: 18px;
-  font-weight: 400;
+.nav a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.nav-item a {
-  text-decoration: none;
-  color: #fff;
+.nav a:hover {
+    text-decoration: underline;
 }
 
-.nav-item:hover a {
-  color: #29a396;
-  transition: 0.3s linear;
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+/* Buttons Section */
+/* Buttons Section */
+.buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
-.nav-item:last-of-type {
-  margin-right: 0;
-}
-/* End Menu */
-
-/* Buttons */
-.btn {
-  padding: 10px 28px;
-  background: var(--clr-primary);
-  border-radius: 40px;
-  font-size: 20px;
-  font-weight: 400;
-  text-decoration: none;
-  color: #fff;
-  display: inline-block;
+.buttons .btn {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
 }
 
-.btn:hover {
-  background: #165f56;
-  transition: 0.3s linear;
+/* Register Button: Gradient Style */
+.buttons .btn {
+    background: linear-gradient(45deg, #ff7f50, #ff6347);
+    color: #fff;
 }
 
-.btn-2 {
-  font-size: 35px;
-  text-decoration: none;
-  color: #ccc;
-  transition: 0.3s linear;
+.buttons .btn:hover {
+    background: linear-gradient(45deg, #ff6347, #ff4500);
+    transform: scale(1.05);
 }
 
-.btn-2:hover {
-  color: #29a396;
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to bottom right, #0078D4, #00A4EF);
+    color: #fff;
+    text-align: center;
+    padding: 4rem 0;
 }
 
-/* End Buttons */
-
-/* Header */
-.text {
-  width: 60%;
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
-.visual {
-  width: 40%;
+.hero p {
+    margin-bottom: 1.5rem;
 }
 
-.visual img {
-  width: 100%;
+.hero .btn {
+    background: #fff;
+    color: #0078D4;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-.header h1 {
-  font-size: 70px;
-  font-weight: 700;
+.hero .btn:hover {
+    background: #f0f0f0;
 }
 
-.header h1 span {
-  color: var(--clr-primary);
-}
-/* End Header */
-
-.section:nth-child(even) .visual {
-  margin-right: 30px;
+/* About Section */
+.about {
+    background: #f4f4f4;
+    padding: 3rem 0;
+    text-align: center;
 }
 
-/* Trainer */
-#trainer {
-  text-align: center;
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.trainer img {
-  border-top-left-radius: 80px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 80px;
-  border-bottom-left-radius: 20px;
-  margin-bottom: 10px;
-  outline: 2px solid #fff;
-  padding: 14px;
+/* Services Section */
+.services {
+    padding: 3rem 0;
+    text-align: center;
 }
 
-.trainer .mb {
-  margin-bottom: 10px;
-}
-/* End Trainer */
-
-/* Testimonial */
-#testimonial .visual img {
-  width: 90%;
-  display: block;
-  margin-left: auto;
+.services h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
 }
 
-.client {
-  background: #fff;
-  color: #000;
-  padding: 20px 10px;
-  margin-right: 20px;
-  text-align: center;
-  border-radius: 20px;
-  position: relative;
-  margin-top: 20px;
+.service-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1.5rem;
 }
 
-.client img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  position: absolute;
-  top: -40px;
-  left: calc(50% - 40px);
+.card {
+    background: #f4f4f4;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    flex: 1 1 calc(30% - 1rem);
+    max-width: 30%;
 }
 
-.client h2 {
-  margin: 20px 0 10px 0;
+.card h3 {
+    margin-bottom: 1rem;
 }
-/* End Testimonial */
 
-/* Discount */
-#discount {
-  padding: 40px 0;
+.card p {
+    font-size: 0.9rem;
 }
-/* End  Discount */
 
 /* Footer */
 .footer {
-  padding: 30px 0;
-  border-top: 1px solid #fff;
-  text-align: center;
-}
-/* End Footer */
-
-/* Responsive */
-
-@media (max-width: 768px) {
-  .flex {
-    flex-direction: column;
+    background: #333;
+    color: #fff;
     text-align: center;
-  }
-
-  .mobile-btn {
-    display: block;
-    font-size: 35px;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: 12px;
-  }
-
-  .menu.active .nav-item {
-    display: block;
-    margin: 30px 0;
-  }
-
-  .nav,
-  .menu .btn {
-    display: none;
-  }
-
-  .menu.active .nav,
-  .menu.active .btn {
-    display: block;
-  }
-
-  .menu.active {
-    padding: 30px 0;
-    width: 100%;
-    transition: all 0.8s ease;
-  }
-
-  .text,
-  .visual {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-
-  .text h1 {
-    font-size: 45px;
-  }
-
-  .primary {
-    font-size: 28px;
-  }
-
-  .secondary {
-    font-size: 22px;
-  }
-
-  .tertiary {
-    font-size: 14px;
-  }
-
-  .trainer {
-    margin-bottom: 20px;
-  }
-
-  .client {
-    margin-bottom: 50px;
-  }
-
-  #discount .visual img {
-    width: 70%;
-    margin-bottom: 30px;
-  }
+    padding: 1rem 0;
 }
 
-@media (max-width: 530px) {
-  .header::after,
-  .header::before,
-  .section::after,
-  .section::before {
-    display: none;
-  }
+/* Responsive Design */
+@media (max-width: 768px) {
+    .service-cards {
+        flex-direction: column;
+    }
 
-  .primary {
-    font-size: 25px;
-  }
+    .card {
+        max-width: 100%;
+    }
 
-  .secondary {
-    font-size: 20px;
-  }
-
-  .tertiary {
-    font-size: 12px;
-  }
-
-  .text h1 {
-    font-size: 34px;
-  }
-
-  .btn,
-  .btn-2 {
-    font-size: 16px;
-  }
+    .auth-buttons {
+        flex-direction: column;
+    }
 }
 
-/* End Responsive */
+@media (max-width: 480px) {
+    .hero h2 {
+        font-size: 2rem;
+    }
 
+    .nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
 
-
-.youtube {
-  position: fixed;
-  bottom: 40px;
-  right: 70px;
-  text-decoration: none;
-  padding: 8px 12px;
-  background: rgba(0,0,0,0.6);
-  border-radius: 6px;
-  box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.2);
-  color: #fff;
-}
-
-.youtube p {
-  font-size: 22px;
+    .nav li {
+        margin: 0.5rem 0;
+    }
 }
