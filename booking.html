@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Form</title>
+    <link rel="stylesheet" href="booking.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">
+                <span class="logo-icon">&#128736;</span> ServiceHub
+            </h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="logout.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="booking">
+        <h2>Book a Service</h2>
+        <form id="booking-form" onsubmit="showConfirmation(event)">
+            <label for="customer-name">Customer Name:</label>
+            <input type="text" id="customer-name" name="customer-name" required>
+
+            <label for="booking-date">Booking Date:</label>
+            <input type="date" id="booking-date" name="booking-date" required>
+
+            <label for="service-type">Service Type:</label>
+            <select id="service-type" name="service-type" required>
+                <option value="AC Repair">AC Repair</option>
+                <option value="TV Repair">TV Repair</option>
+                <option value="Fridge Repair">Fridge Repair</option>
+                <option value="Washing Machine Repair">Washing Machine Repair</option>
+            </select>
+
+            <label for="vendor-selection">Select Vendor:</label>
+            <select id="vendor-selection" name="vendor-selection" required>
+                <option value="Vendor 1">Vendor 1</option>
+                <option value="Vendor 2">Vendor 2</option>
+                <option value="Vendor 3">Vendor 3</option>
+            </select>
+
+            <label for="service-amount">Amount:</label>
+            <input type="number" id="service-amount" name="service-amount" placeholder="₹" required>
+
+            <input type="submit" value="Confirm Booking">
+        </form>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmation-modal" class="confirmation-modal">
+        <h3>Booking Confirmation</h3>
+        <p id="confirmation-details"></p>
+        <button onclick="closeConfirmation()">Close</button>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 ServiceHub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Handle form submission
+        function showConfirmation(event) {
+            event.preventDefault();
+
+            const customerName = document.getElementById('customer-name').value;
+            const bookingDate = document.getElementById('booking-date').value;
+            const serviceType = document.getElementById('service-type').value;
+            const vendorSelection = document.getElementById('vendor-selection').value;
+            const serviceAmount = document.getElementById('service-amount').value;
+
+            const confirmationMessage = `
+                <strong>Service Type:</strong> ${serviceType} <br>
+                <strong>Customer Name:</strong> ${customerName} <br>
+                <strong>Date of Booking:</strong> ${bookingDate} <br>
+                <strong>Vendor Selected:</strong> ${vendorSelection} <br>
+                <strong>Amount:</strong> ₹${serviceAmount}
+            `;
+
+            document.getElementById('confirmation-details').innerHTML = confirmationMessage;
+
+            // Show confirmation modal
+            document.getElementById('confirmation-modal').style.display = 'block';
+
+            // Hide the booking form
+            document.getElementById('booking-form').style.display = 'none';
+        }
+
+        // Close the confirmation modal
+        function closeConfirmation() {
+            document.getElementById('confirmation-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
